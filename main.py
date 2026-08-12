@@ -29,22 +29,17 @@ autoencoder = Sequential([
 ])
 autoencoder.compile(optimizer='adam', loss='mae')
 
-model = autoencoder.fit(
-    x_train_normal, x_train_normal,
-    epochs=20,
-    batch_size=512,
-    validation_data=(x_test_normal, x_test_normal),
-    shuffle=True
-)
-
 # Get reconstruction loss for normal training data
 reconstructions = autoencoder.predict(x_train_normal)
 train_loss = tf.keras.losses.mae(reconstructions, x_train_normal)
 
 # Set threshold
 threshold = np.mean(train_loss) + np.std(train_loss)
+with open('threshold.txt', 'w') as f:
+    f.write(str(threshold))
 print("Anomaly Threshold: ", threshold)
 
 # Saving built model
-model.save("PiezoelectricSensor-Error-Detection")
-print("Model saved as: " + model.name)
+autoencoder.save("PiezoelectricSensor-Error-Detection.keras")
+print("Model saved as: " + autoencoder.name)
+
