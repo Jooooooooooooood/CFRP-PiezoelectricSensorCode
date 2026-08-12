@@ -22,3 +22,7 @@ model.compile(
     metrics=["accuracy"],
 )
 model.fit(x_train, y_train, epochs=5)
+
+# Saving built model
+model.save("PiezoelectricSensor-Error-Detection")
+print("Model saved as: " + model.name)
