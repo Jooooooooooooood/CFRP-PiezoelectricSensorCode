@@ -15,8 +15,8 @@ signalFile.close()
 raw_signal = raw_data(1)
 raw_time = raw_data(0)
 
-fs = 1000       # Sampling frequency: 1000 Hz
-cutoff = 100    # Cutoff frequency: 100 Hz
+fs = 1000
+cutoff = 100
 order = 4
 
 sos = butter(
